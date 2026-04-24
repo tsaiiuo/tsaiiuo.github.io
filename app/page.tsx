@@ -241,7 +241,7 @@ export default function Home() {
 				<div className="rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur">
 					<div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.45fr]">
 						<section className="border-b border-[color:var(--line)] p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
-							<div className="flex h-full flex-col gap-8 lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:overflow-auto">
+							<div className="flex h-full flex-col gap-8 lg:sticky lg:top-6">
 								<div className="space-y-8">
 									<div className="inline-flex rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
 										Data x backend x applied AI
