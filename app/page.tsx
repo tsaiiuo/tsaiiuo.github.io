@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const highlights = [
@@ -118,14 +121,51 @@ const skillGroups = [
 	},
 ];
 
+const sections = [
+	{ id: 'overview', label: 'Overview' },
+	{ id: 'experience', label: 'Experience' },
+	{ id: 'publications', label: 'Publications' },
+	{ id: 'projects', label: 'Projects' },
+	{ id: 'skills', label: 'Core stack' },
+	{ id: 'education', label: 'Education' },
+];
+
 export default function Home() {
+	const [activeSection, setActiveSection] = useState('overview');
+
+	useEffect(() => {
+		const sectionElements = sections
+			.map((section) => document.getElementById(section.id))
+			.filter((element): element is HTMLElement => Boolean(element));
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visibleEntries = entries
+					.filter((entry) => entry.isIntersecting)
+					.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+				if (visibleEntries[0]?.target.id) {
+					setActiveSection(visibleEntries[0].target.id);
+				}
+			},
+			{
+				rootMargin: '-20% 0px -55% 0px',
+				threshold: [0.15, 0.35, 0.6],
+			},
+		);
+
+		sectionElements.forEach((element) => observer.observe(element));
+
+		return () => observer.disconnect();
+	}, []);
+
 	return (
 		<main className="relative overflow-hidden">
 			<div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
 				<div className="rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur">
-					<div className="grid min-h-screen grid-cols-1 lg:grid-cols-[0.95fr_1.45fr]">
-						<section className="border-b border-[color:var(--line)] p-6 sm:p-8 lg:min-h-screen lg:border-b-0 lg:border-r lg:p-10">
-							<div className="flex h-full flex-col justify-between gap-10">
+					<div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.45fr]">
+						<section className="border-b border-[color:var(--line)] p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
+							<div className="flex h-full flex-col gap-8 lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:justify-between lg:overflow-auto">
 								<div className="space-y-8">
 									<div className="inline-flex rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
 										Data x backend x applied AI
@@ -196,18 +236,50 @@ export default function Home() {
 									</div>
 								</div>
 
-								<div className="space-y-4">
-									<div className="flex items-center justify-between">
+								<div className="space-y-6">
+									<div className="space-y-4">
+										<div className="flex items-center justify-between">
+											<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Navigate</h2>
+											<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
+										</div>
+										<nav className="grid gap-2">
+											{sections.map((section) => {
+												const isActive = activeSection === section.id;
+												return (
+													<a
+														key={section.id}
+														href={`#${section.id}`}
+														className={`rounded-2xl border px-4 py-3 text-sm transition ${
+															isActive
+																? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
+																: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
+														}`}
+													>
+														<div className="flex items-center justify-between">
+															<span>{section.label}</span>
+															<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">
+																{section.id}
+															</span>
+														</div>
+													</a>
+												);
+											})}
+										</nav>
+									</div>
+
+									<div className="space-y-4">
+										<div className="flex items-center justify-between">
 										<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">At a glance</h2>
 										<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
 									</div>
-									<div className="grid grid-cols-2 gap-3">
-										{highlights.map((item) => (
-											<div key={item.label} className="rounded-2xl border border-[color:var(--line)] bg-white/70 p-4">
-												<div className="text-2xl font-semibold tracking-[-0.04em]">{item.value}</div>
-												<p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{item.label}</p>
-											</div>
-										))}
+										<div className="grid grid-cols-2 gap-3">
+											{highlights.map((item) => (
+												<div key={item.label} className="rounded-2xl border border-[color:var(--line)] bg-white/70 p-4">
+													<div className="text-2xl font-semibold tracking-[-0.04em]">{item.value}</div>
+													<p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{item.label}</p>
+												</div>
+											))}
+										</div>
 									</div>
 								</div>
 							</div>
@@ -215,7 +287,7 @@ export default function Home() {
 
 						<section className="p-6 sm:p-8 lg:p-10">
 							<div className="space-y-10">
-								<div className="rounded-[1.75rem] border border-[color:var(--line)] bg-[color:var(--surface-strong)] p-6">
+								<div id="overview" className="rounded-[1.75rem] border border-[color:var(--line)] bg-[color:var(--surface-strong)] p-6 scroll-mt-24">
 									<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 										<div className="max-w-2xl">
 											<p className="font-[family:var(--font-ibm-plex-mono)] text-xs uppercase tracking-[0.24em] text-[color:var(--accent-warm)]">
@@ -230,7 +302,7 @@ export default function Home() {
 									</div>
 								</div>
 
-								<div className="space-y-4">
+								<div id="experience" className="space-y-4 scroll-mt-24">
 									<div className="flex items-center justify-between">
 										<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Experience</h2>
 										<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
@@ -263,7 +335,7 @@ export default function Home() {
 									</div>
 								</div>
 
-								<div className="space-y-4">
+								<div id="publications" className="space-y-4 scroll-mt-24">
 									<div className="flex items-center justify-between">
 										<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Publications</h2>
 										<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
@@ -285,7 +357,7 @@ export default function Home() {
 									</div>
 								</div>
 
-								<div className="space-y-4">
+								<div id="projects" className="space-y-4 scroll-mt-24">
 									<div className="flex items-center justify-between">
 										<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Projects</h2>
 										<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
@@ -305,7 +377,7 @@ export default function Home() {
 								</div>
 
 								<div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-									<div className="space-y-4 rounded-[1.75rem] border border-[color:var(--line)] bg-white/70 p-6">
+									<div id="skills" className="space-y-4 rounded-[1.75rem] border border-[color:var(--line)] bg-white/70 p-6 scroll-mt-24">
 										<div className="flex items-center justify-between">
 											<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Core stack</h2>
 											<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
@@ -329,7 +401,7 @@ export default function Home() {
 										</div>
 									</div>
 
-									<div className="space-y-4 rounded-[1.75rem] border border-[color:var(--line)] bg-[color:var(--foreground)] p-6 text-white">
+									<div id="education" className="space-y-4 rounded-[1.75rem] border border-[color:var(--line)] bg-[color:var(--foreground)] p-6 text-white scroll-mt-24">
 										<div>
 											<p className="font-[family:var(--font-ibm-plex-mono)] text-xs uppercase tracking-[0.2em] text-white/60">Education</p>
 											<h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">NCKU EE-CSIE</h2>
