@@ -188,6 +188,20 @@ export default function Home() {
 
 	return (
 		<main className="relative overflow-hidden">
+			<div className="pointer-events-none fixed left-4 top-0 z-30 hidden h-screen xl:flex xl:w-12 xl:items-center xl:justify-center">
+				<div className="flex h-[70vh] w-full flex-col items-center justify-center gap-3">
+					<div className="rounded-full border border-[color:var(--line)] bg-[color:var(--surface)]/92 px-2 py-1 font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.16em] text-[color:var(--muted)] backdrop-blur">
+						{readProgress}%
+					</div>
+					<div className="relative h-full w-[4px] overflow-hidden rounded-full bg-black/8">
+						<div
+							className="absolute inset-x-0 top-0 rounded-full bg-[color:var(--accent)] transition-[height] duration-300"
+							style={{ height: `${readProgress}%` }}
+						/>
+					</div>
+				</div>
+			</div>
+
 			<div className="mx-auto max-w-[1600px] px-4 py-4 sm:px-6 lg:px-8">
 				<div className="sticky top-3 z-20 mb-4 lg:hidden">
 					<div className="overflow-hidden rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--surface)]/95 p-3 shadow-[0_16px_50px_rgba(33,33,33,0.08)] backdrop-blur">
@@ -224,10 +238,10 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="grid gap-6 lg:grid-cols-[360px_minmax(0,1fr)] xl:grid-cols-[400px_minmax(0,1fr)]">
+				<div className="grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)] xl:grid-cols-[460px_minmax(0,1fr)]">
 					<aside className="hidden lg:block">
-						<div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-auto rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-8 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur">
-							<div className="flex min-h-[calc(100vh-6rem)] flex-col">
+						<div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-auto px-4 py-2 xl:px-6">
+							<div className="flex min-h-[calc(100vh-3rem)] flex-col">
 								<div className="space-y-6">
 									<div className="inline-flex rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
 										Data x backend x applied AI
@@ -289,42 +303,29 @@ export default function Home() {
 								<div className="mt-8 flex-1 space-y-6">
 									<div className="space-y-4">
 										<SectionHeader title="Navigate" />
-										<div className="grid grid-cols-[36px_minmax(0,1fr)] gap-4">
-											<div className="flex flex-col items-center">
-												<div className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
-													{readProgress}%
-												</div>
-												<div className="relative mt-3 h-full min-h-72 w-[3px] overflow-hidden rounded-full bg-black/8">
-													<div
-														className="absolute inset-x-0 top-0 rounded-full bg-[color:var(--accent)] transition-[height] duration-300"
-														style={{ height: `${readProgress}%` }}
-													/>
-												</div>
-											</div>
-											<nav className="grid content-start gap-2">
-												{sections.map((section) => {
-													const isActive = activeSection === section.id;
-													return (
-														<a
-															key={section.id}
-															href={`#${section.id}`}
-															className={`rounded-2xl border px-4 py-3 text-sm transition ${
-																isActive
-																	? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
-																	: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
-															}`}
-														>
-															<div className="flex items-center justify-between">
-																<span>{section.label}</span>
-																<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">
-																	{section.id}
-																</span>
-															</div>
-														</a>
-													);
-												})}
-											</nav>
-										</div>
+										<nav className="grid content-start gap-2">
+											{sections.map((section) => {
+												const isActive = activeSection === section.id;
+												return (
+													<a
+														key={section.id}
+														href={`#${section.id}`}
+														className={`rounded-2xl border px-4 py-3 text-sm transition ${
+															isActive
+																? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
+																: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
+														}`}
+													>
+														<div className="flex items-center justify-between">
+															<span>{section.label}</span>
+															<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">
+																{section.id}
+															</span>
+														</div>
+													</a>
+												);
+											})}
+										</nav>
 									</div>
 
 									<div className="space-y-4">
