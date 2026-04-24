@@ -1,8 +1,10 @@
+import Image from 'next/image';
+
 const highlights = [
-	{ label: 'ICDM demo paper', value: '2025' },
-	{ label: 'TSMC IT Hackathon', value: '1st Place' },
-	{ label: 'Fact model build time', value: '-60%' },
-	{ label: 'LLaMA token usage', value: '-95%' },
+	{ label: 'Internship experiences', value: '3' },
+	{ label: 'International publications', value: '4' },
+	{ label: 'First-author publications', value: '3' },
+	{ label: 'Hackathon finish', value: '1st Place' },
 ];
 
 const experiences = [
@@ -74,6 +76,29 @@ const projects = [
 	},
 ];
 
+const publications = [
+	{
+		title: 'From Thought to Action: An Interactive Platform for Inspecting Strategic Reasoning in LLMs',
+		venue: '2026 AAMAS Workshop Paper',
+		role: '3rd author',
+	},
+	{
+		title: 'SAMPLE: A Spatial/Channel-wise Attention GCN with MLP and Periodic Linear Encoding for Land Boundary Demarcation System',
+		venue: '2026 WWW Demo Paper',
+		role: '1st author',
+	},
+	{
+		title: 'GRIDS: A Geospatial AI System for Land Boundary Demarcation',
+		venue: '2025 ICDM Workshop Paper',
+		role: '1st author',
+	},
+	{
+		title: 'MT-redis',
+		venue: 'Linux Foundation Open Source Summit 2025',
+		role: '3rd author',
+	},
+];
+
 const skillGroups = [
 	{
 		title: 'Data Platforms',
@@ -106,6 +131,22 @@ export default function Home() {
 										Data x backend x applied AI
 									</div>
 
+									<div className="overflow-hidden rounded-[1.8rem] border border-[color:var(--line)] bg-[color:var(--surface-strong)]">
+										<div className="relative aspect-[4/5] w-full">
+											<Image
+												src="/min-huan-tsai.jpg"
+												alt="Min-Huan Tsai portrait"
+												fill
+												priority
+												className="object-cover object-center"
+											/>
+										</div>
+										<div className="flex items-center justify-between border-t border-[color:var(--line)] px-4 py-3 text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">
+											<span>Personal portrait</span>
+											<span>San Francisco</span>
+										</div>
+									</div>
+
 									<div className="space-y-4">
 										<p className="font-[family:var(--font-ibm-plex-mono)] text-sm uppercase tracking-[0.2em] text-[color:var(--accent)]">
 											Min-Huan Tsai
@@ -115,8 +156,8 @@ export default function Home() {
 										</h1>
 										<p className="max-w-xl text-base leading-7 text-[color:var(--muted)] sm:text-lg">
 											NCKU EE-CSIE master&apos;s student with internship experience at TSMC, GoFreight, and QuickClick.
-											My work spans data engineering, backend systems, and applied AI, with a 2025 IEEE ICDM paper and
-											a TSMC hackathon win.
+											My work spans data engineering, backend systems, and applied AI, with four international publications,
+											three internships, and a TSMC hackathon win.
 										</p>
 									</div>
 
@@ -157,7 +198,7 @@ export default function Home() {
 
 								<div className="space-y-4">
 									<div className="flex items-center justify-between">
-										<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Selected impact</h2>
+										<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">At a glance</h2>
 										<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
 									</div>
 									<div className="grid grid-cols-2 gap-3">
@@ -216,6 +257,28 @@ export default function Home() {
 															{bullet}
 														</div>
 													))}
+												</div>
+											</article>
+										))}
+									</div>
+								</div>
+
+								<div className="space-y-4">
+									<div className="flex items-center justify-between">
+										<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Publications</h2>
+										<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
+									</div>
+									<div className="grid gap-4">
+										{publications.map((publication) => (
+											<article key={publication.title} className="rounded-[1.75rem] border border-[color:var(--line)] bg-white/70 p-6">
+												<div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+													<div className="max-w-3xl">
+														<h3 className="text-xl font-semibold leading-8 tracking-[-0.03em]">{publication.title}</h3>
+														<p className="mt-2 text-sm uppercase tracking-[0.16em] text-[color:var(--accent)]">{publication.venue}</p>
+													</div>
+													<p className="font-[family:var(--font-ibm-plex-mono)] text-xs uppercase tracking-[0.16em] text-[color:var(--muted)]">
+														{publication.role}
+													</p>
 												</div>
 											</article>
 										))}
