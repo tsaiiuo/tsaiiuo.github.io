@@ -288,23 +288,28 @@ export default function Home() {
 								<div className="space-y-6">
 									<div className="space-y-4">
 										<SectionHeader title="Navigate" />
-										<nav className="grid gap-2">
+										<nav className="space-y-1">
 											{sections.map((section) => {
 												const isActive = activeSection === section.id;
 												return (
 													<a
 														key={section.id}
 														href={`#${section.id}`}
-														className={`rounded-2xl border px-4 py-3 text-sm transition ${
+														className={`flex items-center justify-between rounded-xl px-2 py-2 text-sm transition ${
 															isActive
-																? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
-																: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
+																? 'text-[color:var(--foreground)]'
+																: 'text-[color:var(--muted)] hover:text-[color:var(--foreground)]'
 														}`}
 													>
-														<div className="flex items-center justify-between">
+														<div className="flex items-center gap-3">
+															<span
+																className={`block h-2.5 w-2.5 rounded-full transition ${
+																	isActive ? 'bg-[color:var(--accent)]' : 'bg-black/10'
+																}`}
+															/>
 															<span>{section.label}</span>
-															<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">{section.id}</span>
 														</div>
+														<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">{section.id}</span>
 													</a>
 												);
 											})}
