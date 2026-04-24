@@ -132,6 +132,7 @@ const sections = [
 
 export default function Home() {
 	const [activeSection, setActiveSection] = useState('overview');
+	const [readProgress, setReadProgress] = useState(0);
 
 	useEffect(() => {
 		const sectionElements = sections
@@ -159,9 +160,62 @@ export default function Home() {
 		return () => observer.disconnect();
 	}, []);
 
+	useEffect(() => {
+		const updateReadProgress = () => {
+			const scrollTop = window.scrollY;
+			const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const progress = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+			setReadProgress(Math.round(progress));
+		};
+
+		updateReadProgress();
+		window.addEventListener('scroll', updateReadProgress, { passive: true });
+		window.addEventListener('resize', updateReadProgress);
+
+		return () => {
+			window.removeEventListener('scroll', updateReadProgress);
+			window.removeEventListener('resize', updateReadProgress);
+		};
+	}, []);
+
 	return (
 		<main className="relative overflow-hidden">
 			<div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
+				<div className="sticky top-3 z-20 mb-4 lg:hidden">
+					<div className="overflow-hidden rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--surface)]/95 p-3 shadow-[0_16px_50px_rgba(33,33,33,0.08)] backdrop-blur">
+						<div className="mb-3 flex items-center justify-between">
+							<p className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em] text-[color:var(--muted)]">
+								Reading progress
+							</p>
+							<span className="text-sm font-semibold">{readProgress}%</span>
+						</div>
+						<div className="mb-3 h-1.5 overflow-hidden rounded-full bg-black/8">
+							<div
+								className="h-full rounded-full bg-[color:var(--accent)] transition-[width] duration-300"
+								style={{ width: `${readProgress}%` }}
+							/>
+						</div>
+						<nav className="flex gap-2 overflow-x-auto pb-1">
+							{sections.map((section) => {
+								const isActive = activeSection === section.id;
+								return (
+									<a
+										key={section.id}
+										href={`#${section.id}`}
+										className={`shrink-0 rounded-full border px-3 py-2 text-xs uppercase tracking-[0.14em] transition ${
+											isActive
+												? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
+												: 'border-[color:var(--line)] bg-white/70 text-[color:var(--muted)]'
+										}`}
+									>
+										{section.label}
+									</a>
+								);
+							})}
+						</nav>
+					</div>
+				</div>
+
 				<div className="rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur">
 					<div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.45fr]">
 						<section className="border-b border-[color:var(--line)] p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
@@ -242,29 +296,42 @@ export default function Home() {
 											<h2 className="text-sm uppercase tracking-[0.2em] text-[color:var(--muted)]">Navigate</h2>
 											<div className="h-px flex-1 bg-[color:var(--line)] ml-4" />
 										</div>
-										<nav className="grid gap-2">
-											{sections.map((section) => {
-												const isActive = activeSection === section.id;
-												return (
-													<a
-														key={section.id}
-														href={`#${section.id}`}
-														className={`rounded-2xl border px-4 py-3 text-sm transition ${
-															isActive
-																? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
-																: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
-														}`}
-													>
-														<div className="flex items-center justify-between">
-															<span>{section.label}</span>
-															<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">
-																{section.id}
-															</span>
-														</div>
-													</a>
-												);
-											})}
-										</nav>
+										<div className="grid grid-cols-[auto_1fr] gap-4">
+											<div className="hidden w-10 flex-col items-center lg:flex">
+												<div className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.16em] text-[color:var(--muted)]">
+													{readProgress}%
+												</div>
+												<div className="relative mt-3 h-full min-h-56 w-[3px] overflow-hidden rounded-full bg-black/8">
+													<div
+														className="absolute inset-x-0 top-0 rounded-full bg-[color:var(--accent)] transition-[height] duration-300"
+														style={{ height: `${readProgress}%` }}
+													/>
+												</div>
+											</div>
+											<nav className="grid gap-2">
+												{sections.map((section) => {
+													const isActive = activeSection === section.id;
+													return (
+														<a
+															key={section.id}
+															href={`#${section.id}`}
+															className={`rounded-2xl border px-4 py-3 text-sm transition ${
+																isActive
+																	? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
+																	: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
+															}`}
+														>
+															<div className="flex items-center justify-between">
+																<span>{section.label}</span>
+																<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">
+																	{section.id}
+																</span>
+															</div>
+														</a>
+													);
+												})}
+											</nav>
+										</div>
 									</div>
 
 									<div className="space-y-4">
