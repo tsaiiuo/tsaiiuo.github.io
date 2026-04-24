@@ -238,14 +238,14 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="grid gap-6 lg:grid-cols-[380px_minmax(0,1fr)] xl:grid-cols-[460px_minmax(0,1fr)]">
-					<section className="space-y-6 lg:order-1">
-						<div className="rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur sm:p-8">
-							<div className="space-y-6">
-								<div className="inline-flex rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
-									Data x backend x applied AI
-								</div>
-								<div className="grid gap-6 xl:grid-cols-[0.92fr_1.08fr] xl:items-end">
+				<div className="rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur">
+					<div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.45fr]">
+						<section className="border-b border-[color:var(--line)] p-6 sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
+							<div className="flex h-full flex-col gap-8 lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:overflow-auto">
+								<div className="space-y-8">
+									<div className="inline-flex rounded-full border border-[color:var(--line)] bg-white/70 px-3 py-1 text-xs uppercase tracking-[0.24em] text-[color:var(--muted)]">
+										Data x backend x applied AI
+									</div>
 									<div className="overflow-hidden rounded-[1.8rem] border border-[color:var(--line)] bg-[color:var(--surface-strong)]">
 										<div className="relative aspect-[4/5] w-full">
 											<Image src="/min-huan-tsai.jpg" alt="Min-Huan Tsai portrait" fill priority className="object-cover object-center" />
@@ -255,62 +255,79 @@ export default function Home() {
 											<span>San Francisco</span>
 										</div>
 									</div>
-									<div className="space-y-6">
-										<div className="space-y-3">
-											<p className="font-[family:var(--font-ibm-plex-mono)] text-sm uppercase tracking-[0.2em] text-[color:var(--accent)]">
-												Min-Huan Tsai
-											</p>
-											<p className="max-w-2xl text-base leading-7 text-[color:var(--muted)]">
-												I like systems work where performance, correctness, and actual deployment matter: pipeline latency, model cost,
-												search quality, and user-facing reliability.
-											</p>
-											<h1 className="text-4xl font-semibold leading-none tracking-[-0.05em] xl:text-6xl">
-												High-leverage engineering over surface-level demos.
-											</h1>
+									<div className="space-y-3">
+										<p className="font-[family:var(--font-ibm-plex-mono)] text-sm uppercase tracking-[0.2em] text-[color:var(--accent)]">Min-Huan Tsai</p>
+										<p className="max-w-xl text-base leading-7 text-[color:var(--muted)]">
+											I like systems work where performance, correctness, and actual deployment matter: pipeline latency, model cost,
+											search quality, and user-facing reliability.
+										</p>
+										<h1 className="max-w-lg text-5xl font-semibold leading-none tracking-[-0.05em] sm:text-6xl">
+											High-leverage engineering over surface-level demos.
+										</h1>
+									</div>
+									<div className="grid gap-3 sm:grid-cols-2">
+										<a href="mailto:tsaiiuo1@gmail.com" className="rounded-2xl bg-[color:var(--foreground)] px-5 py-4 text-sm text-white">
+											Email
+											<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-white/70">tsaiiuo1@gmail.com</div>
+										</a>
+										<a href="https://github.com/tsaiiuo" target="_blank" rel="noreferrer" className="rounded-2xl border border-[color:var(--line)] bg-white/80 px-5 py-4 text-sm">
+											GitHub
+											<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-[color:var(--muted)]">github.com/tsaiiuo</div>
+										</a>
+										<a href="https://www.linkedin.com/in/min-huan-tsai-410139227/" target="_blank" rel="noreferrer" className="rounded-2xl border border-[color:var(--line)] bg-white/80 px-5 py-4 text-sm">
+											LinkedIn
+											<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-[color:var(--muted)]">professional profile</div>
+										</a>
+										<div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--accent-soft)] px-5 py-4 text-sm">
+											Base
+											<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-[color:var(--muted)]">Taiwan, open to backend and data roles</div>
 										</div>
-										<div className="grid gap-3 sm:grid-cols-2">
-											<a href="mailto:tsaiiuo1@gmail.com" className="rounded-2xl bg-[color:var(--foreground)] px-5 py-4 text-sm text-white">
-												Email
-												<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-white/70">tsaiiuo1@gmail.com</div>
-											</a>
-											<a
-												href="https://github.com/tsaiiuo"
-												target="_blank"
-												rel="noreferrer"
-												className="rounded-2xl border border-[color:var(--line)] bg-white/80 px-5 py-4 text-sm"
-											>
-												GitHub
-												<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-[color:var(--muted)]">github.com/tsaiiuo</div>
-											</a>
-											<a
-												href="https://www.linkedin.com/in/min-huan-tsai-410139227/"
-												target="_blank"
-												rel="noreferrer"
-												className="rounded-2xl border border-[color:var(--line)] bg-white/80 px-5 py-4 text-sm"
-											>
-												LinkedIn
-												<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-[color:var(--muted)]">professional profile</div>
-											</a>
-											<div className="rounded-2xl border border-[color:var(--line)] bg-[color:var(--accent-soft)] px-5 py-4 text-sm">
-												Base
-												<div className="mt-1 font-[family:var(--font-ibm-plex-mono)] text-xs text-[color:var(--muted)]">
-													Taiwan, open to backend and data roles
+									</div>
+								</div>
+
+								<div className="space-y-6">
+									<div className="space-y-4">
+										<SectionHeader title="Navigate" />
+										<nav className="grid gap-2">
+											{sections.map((section) => {
+												const isActive = activeSection === section.id;
+												return (
+													<a
+														key={section.id}
+														href={`#${section.id}`}
+														className={`rounded-2xl border px-4 py-3 text-sm transition ${
+															isActive
+																? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
+																: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
+														}`}
+													>
+														<div className="flex items-center justify-between">
+															<span>{section.label}</span>
+															<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">{section.id}</span>
+														</div>
+													</a>
+												);
+											})}
+										</nav>
+									</div>
+
+									<div className="space-y-4">
+										<SectionHeader title="At a glance" />
+										<div className="grid grid-cols-2 gap-3">
+											{highlights.map((item) => (
+												<div key={item.label} className="rounded-2xl border border-[color:var(--line)] bg-white/70 p-4">
+													<div className="text-2xl font-semibold tracking-[-0.04em]">{item.value}</div>
+													<p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{item.label}</p>
 												</div>
-											</div>
-										</div>
-										<div className="rounded-[1.5rem] border border-[color:var(--line)] bg-[color:var(--surface-strong)] p-5">
-											<p className="max-w-2xl text-base leading-7 text-[color:var(--muted)]">
-												NCKU EE-CSIE master&apos;s student with internship experience at TSMC, GoFreight, and QuickClick. My work spans
-												data engineering, backend systems, and applied AI, with four international publications, three internships, and a
-												TSMC hackathon win.
-											</p>
+											))}
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</section>
 
-						<div id="overview" className="scroll-mt-24 rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur sm:p-8">
+						<section className="space-y-6 p-6 sm:p-8 lg:p-10">
+							<div id="overview" className="scroll-mt-24 rounded-[1.75rem] border border-[color:var(--line)] bg-[color:var(--surface-strong)] p-6">
 							<div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 								<div className="max-w-2xl">
 									<p className="font-[family:var(--font-ibm-plex-mono)] text-xs uppercase tracking-[0.24em] text-[color:var(--accent-warm)]">
@@ -325,7 +342,7 @@ export default function Home() {
 							</div>
 						</div>
 
-						<div id="experience" className="scroll-mt-24 space-y-4 rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur sm:p-8">
+						<div id="experience" className="scroll-mt-24 space-y-4">
 							<SectionHeader title="Experience" />
 							<div className="space-y-4">
 								{experiences.map((experience) => (
@@ -352,7 +369,7 @@ export default function Home() {
 							</div>
 						</div>
 
-						<div id="publications" className="scroll-mt-24 space-y-4 rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur sm:p-8">
+						<div id="publications" className="scroll-mt-24 space-y-4">
 							<SectionHeader title="Publications" />
 							<div className="grid gap-4">
 								{publications.map((publication) => (
@@ -371,7 +388,7 @@ export default function Home() {
 							</div>
 						</div>
 
-						<div id="projects" className="scroll-mt-24 space-y-4 rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur sm:p-8">
+						<div id="projects" className="scroll-mt-24 space-y-4">
 							<SectionHeader title="Projects" />
 							<div className="grid gap-4 xl:grid-cols-2">
 								{projects.map((project) => (
@@ -388,7 +405,7 @@ export default function Home() {
 						</div>
 
 						<div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-							<div id="skills" className="scroll-mt-24 space-y-4 rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur sm:p-8">
+							<div id="skills" className="scroll-mt-24 space-y-4">
 								<SectionHeader title="Core stack" />
 								<div className="grid gap-4 md:grid-cols-2">
 									{skillGroups.map((group) => (
@@ -406,7 +423,7 @@ export default function Home() {
 								</div>
 							</div>
 
-							<div id="education" className="scroll-mt-24 space-y-4 rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--foreground)] p-6 text-white shadow-[0_20px_80px_rgba(33,33,33,0.08)] sm:p-8">
+							<div id="education" className="scroll-mt-24 space-y-4 rounded-[1.75rem] border border-[color:var(--line)] bg-[color:var(--foreground)] p-6 text-white">
 								<div>
 									<p className="font-[family:var(--font-ibm-plex-mono)] text-xs uppercase tracking-[0.2em] text-white/60">Education</p>
 									<h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em]">NCKU EE-CSIE</h2>
@@ -427,49 +444,7 @@ export default function Home() {
 							</div>
 						</div>
 					</section>
-
-					<aside className="hidden lg:block lg:order-2">
-						<div className="sticky top-4 max-h-[calc(100vh-2rem)] overflow-auto rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--surface)] p-8 shadow-[0_20px_80px_rgba(33,33,33,0.08)] backdrop-blur">
-							<div className="space-y-6">
-								<div className="space-y-4">
-									<SectionHeader title="Navigate" />
-									<nav className="grid content-start gap-2">
-										{sections.map((section) => {
-											const isActive = activeSection === section.id;
-											return (
-												<a
-													key={section.id}
-													href={`#${section.id}`}
-													className={`rounded-2xl border px-4 py-3 text-sm transition ${
-														isActive
-															? 'border-[color:var(--accent)] bg-[color:var(--accent)] text-white'
-															: 'border-[color:var(--line)] bg-white/60 text-[color:var(--muted)] hover:border-[color:var(--accent)] hover:text-[color:var(--foreground)]'
-													}`}
-												>
-													<div className="flex items-center justify-between">
-														<span>{section.label}</span>
-														<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">{section.id}</span>
-													</div>
-												</a>
-											);
-										})}
-									</nav>
-								</div>
-
-								<div className="space-y-4">
-									<SectionHeader title="At a glance" />
-									<div className="grid grid-cols-2 gap-3">
-										{highlights.map((item) => (
-											<div key={item.label} className="rounded-2xl border border-[color:var(--line)] bg-white/70 p-4">
-												<div className="text-2xl font-semibold tracking-[-0.04em]">{item.value}</div>
-												<p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{item.label}</p>
-											</div>
-										))}
-									</div>
-								</div>
-							</div>
-						</div>
-					</aside>
+				</div>
 				</div>
 			</div>
 		</main>
