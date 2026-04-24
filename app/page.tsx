@@ -287,36 +287,6 @@ export default function Home() {
 
 								<div className="space-y-6">
 									<div className="space-y-4">
-										<SectionHeader title="Navigate" />
-										<nav className="space-y-1">
-											{sections.map((section) => {
-												const isActive = activeSection === section.id;
-												return (
-													<a
-														key={section.id}
-														href={`#${section.id}`}
-														className={`flex items-center justify-between rounded-xl px-2 py-2 text-sm transition ${
-															isActive
-																? 'text-[color:var(--foreground)]'
-																: 'text-[color:var(--muted)] hover:text-[color:var(--foreground)]'
-														}`}
-													>
-														<div className="flex items-center gap-3">
-															<span
-																className={`block h-2.5 w-2.5 rounded-full transition ${
-																	isActive ? 'bg-[color:var(--accent)]' : 'bg-black/10'
-																}`}
-															/>
-															<span>{section.label}</span>
-														</div>
-														<span className="font-[family:var(--font-ibm-plex-mono)] text-[11px] uppercase tracking-[0.18em]">{section.id}</span>
-													</a>
-												);
-											})}
-										</nav>
-									</div>
-
-									<div className="space-y-4">
 										<SectionHeader title="At a glance" />
 										<div className="grid grid-cols-2 gap-3">
 											{highlights.map((item) => (
